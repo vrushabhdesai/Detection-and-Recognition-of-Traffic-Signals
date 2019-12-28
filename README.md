@@ -3,11 +3,11 @@
 ## Overview
 
 ### Introduction
-  Nowadays, traffic signals detection system has an immediate use to avoid accidents. From an online survey sourced by AAA foundation for traffic safety, deaths from drivers running red lights in America has reached more than 30% in 2017 from 2009 as shown in fig below.
+Nowadays, traffic signals detection system has an immediate use to avoid accidents. From an online survey sourced by AAA foundation for traffic safety, deaths from drivers running red lights in America has reached more than 30% in 2017 from 2009 as shown in fig below.
 
-![Alt text](Report/1.jpg?raw=true "Title")
+<img src="Report/1.JPG" align="center">
 
-  Our objective is to implement an object detecting algorithm that detects traffic signals accurately under different environmental conditions like illumination, motion, etc. In this paper, we used classical computer vision techniques like Hough, SIFT and Top hat filter to detect the traffic lights. We also used YOLOv3 for accurate detection and made a comparative analysis with other methods implemented. The results of this project are stated with different cases that defines both the prospects and challenges of our algorithm implementation.
+Our objective is to implement an object detecting algorithm that detects traffic signals accurately under different environmental conditions like illumination, motion, etc. In this paper, we used classical computer vision techniques like Hough, SIFT and Top hat filter to detect the traffic lights. We also used YOLOv3 for accurate detection and made a comparative analysis with other methods implemented. The results of this project are stated with different cases that defines both the prospects and challenges of our algorithm implementation.
   
   ## Implementation 
   We have used OpenCV to implement our project along with libraries such as numpy, pandas, matplotlib, etc. will be used based on our project requirements. The implementation workflow will be as follows:
@@ -16,11 +16,11 @@
 
 Scale Invariant Feature Transform (SIFT) is a technique used in computer vision to detect features in an image. Each feature vector is a vector of 128 numbers with stores overall magnitude and direction information of gradient at that key point, and thus can be referred as ‘fingerprint’ of a key point. In order to match key points in two images, the algorithm compares each feature vector from the new image with feature vectors of the test image and selects the ‘best-match’ based on minimum Euclidean distance between the two feature vectors. For detection of traffic signal, this SIFT feature detection algorithm is applied on two images of traffic signals of same scenario taken from two different perspectives
 
-![Alt text](Report/2.jpg?raw=true "Title")
+<img src="Report/2.JPG" align="center">
 
 The SIFT algorithm is invariant to scale but not to changes in perspective, thus when two images of same scene are compared from same perspective, the accuracy of the algorithm improved as compared to images from different perspective
 
-![Alt text](Report/3.jpg?raw=true "Title")
+<img src="Report/3.JPG"  align="center">
 
 Change in perspective or change in the scene, the algorithm performs poor to match features with accuracy and robustness. So, we added Top Hat Filter with SIFT and SURF feature detector.
 
@@ -35,36 +35,36 @@ Top hat filter is a mathematical morphological operation that extracts tiny elem
 The White Top Hat filter is then given by:
 
 <p align="center">
-[`𝐹𝑤 = 𝐴 − (𝐴 𝜊 𝐵)`]
+<b>𝐹𝑤 = 𝐴 − (𝐴 𝜊 𝐵)</b>
 </p>
 
 It is mathematically represented by:
 
 <p align="center">
-[`(𝐴 ⊖ 𝐵) ⊕ 𝐵`]
+  <b>(𝐴 ⊖ 𝐵) ⊕ 𝐵</b>
 </p>
 
 **•	Black Top Hat Filter:** The black top hat filter is given by closing an Image first and then subtracting the input image from the results of the closing operation.
 
 For the purpose of this project, we have used white top hat filter algorithm and the SURF detector. SURF makes use of the Hessian Matrix for selecting the location and scale.
 
-![Alt text](Report/4.jpg?raw=true "Title")
+<img src="Report/4.JPG" align="center">
 
 **3.	Hough Transform and Thresholding on HSV Colour space:** 
 
 Using this HSV image our next goal is to define HSV range for red, green and yellow so we can segment our image based on three different colors. HSV range for three different colors used are as follows:
 
-![Alt text](Report/table1.jpg?raw=true "Table")
+<img src="Report/t2.JPG" align="center">
 
 Next step is to apply this colour ranges on an HSV image and create a binary mask for red, yellow and green. Another object which is not traffic light can also lie in three HSV colour range. So, to avoid this noisy outlier we used image morphological operations like opening followed by dilation. An opening is defined as an erosion followed by a dilation using the same structuring element for both operations.
 
-![Alt text](Report\Report Images\2.jpg?raw=true "")
+<img src="Report/Report%20Images/2.JPG">
 
-![Alt text](Report\6.jpg?raw=true "")
+<img src="Report/6.JPG" align="center">
 
 This algorithm is invariant to illuminous and performs well in most of the case and was able to detect the traffic signal successfully. Following Image shows three different signal light and its detection using this algorithm.
 
-![Alt text](Report\7.jpg?raw=true "")
+<img src="Report/7.JPG" >
 
 **4.	YOLOv3 (You Only Look Once):**
 
@@ -72,13 +72,23 @@ We used deep learning network architecture like YOLOv3 for real time object dete
 
 Decision rule:
 
-![Alt text](Report\table2.jpg?raw=true "Table2")
+R= # of white pixels in red mask;
+G= # of white pixels in green mask;
+Y= # of white pixels in yellow mask.
 
-![Alt text](Report\8.jpg?raw=true "")
+<img src="Report/t1.JPG" align="center">
+
+<img src="Report/8.JPG" align="center">
 
 The Yolov3 algorithm was even tested to run on real time by applying it on the video which is a travel vlog on the routes of Downton Boston. The results of this performance can seen from the short video below.
 
-GIF
+[`Demo Video 1`]  [`Demo Video 2`]  
+
+[`Dataset`]
+
+[`Demo Video 1`]: https://www.youtube.com/watch?v=PsYKZ-kU1rA
+[`Demo Video 2`]: https://www.youtube.com/watch?v=6thHwfyPkGg
+[`Dataset`]: http://computing.wpi.edu/dataset.html
 
 ## Results: 
 **1. SIFT**: As a result of the analysis, it was found that SIFT feature detection algorithm
