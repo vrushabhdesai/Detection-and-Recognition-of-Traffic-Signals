@@ -80,12 +80,12 @@ The Yolov3 algorithm was even tested to run on real time by applying it on the v
 
 GIF
 
-### Results: 
-1. SIFT: As a result of the analysis, it was found that SIFT feature detection algorithm
+## Results: 
+**1. SIFT**: As a result of the analysis, it was found that SIFT feature detection algorithm
 was able to detect features in two images when the two images are from scene and almost similar
 perspectives. But when there is a change in scenario or perspective, the performance of the algorithm deteriorates, and it loses it accuracy.
 
-2. Top Hat Filter with SURF:
+**2. Top Hat Filter with SURF:**
 Upon applying the Top Filter along with the SURF Algorithm, while the traffic signals were being
 detected, there were multiple outliers. The methodology would detect the brightest spot on the
 image and would mark it as traffic signal. However, if another object of similar or greater
@@ -95,16 +95,12 @@ distance of the signal from the camera, a single code can’t detect and mark si
 as the kernel required for each image would be different and so the methodology is not robust
 and a different technique was needed for higher accuracy and robustness.
 
-3. Hough Transform and thresholding on colour space:
-From the analysis, it was found that implementation of this algorithm was able to detect a traffic
-light and classify it into red, green or yellow properly. But this algorithm has certain inherent limitations like it can easily get confused if it detects a circular object in the image which has the same HSV colour range as that of red, yellow or green traffic light.
+**3. Hough Transform and thresholding on colour space:**
+From the analysis, it was found that implementation of this algorithm was able to detect a traffic light and classify it into red, green or yellow properly. But this algorithm has certain inherent limitations like it can easily get confused if it detects a circular object in the image which has the same HSV colour range as that of red, yellow or green traffic light.
 
-4. YOLOv3:
-The YOLOv3 algorithm was able to detect the traffic signals with accuracy in robustness. In
-addition to this, it was able to detect signals even under different lighting conditions (day and
-night) and even in real time. The inherent drawback of this algorithm is the computation time. Due to its computational complexity, the computation drops to as low as 7 fps.
+**4. YOLOv3:**
+The YOLOv3 algorithm was able to detect the traffic signals with accuracy in robustness. In addition to this, it was able to detect signals even under different lighting conditions (day and night) and even in real time. The inherent drawback of this algorithm is the computation time. Due to its computational complexity, the computation drops to as low as 7 fps.
 
-### Conclusions:
+## Conclusions:
 As analysed in the ‘Results’, each of the four methods implemented have their own advantages and disadvantages associated with them. Out of the four, YOLOv3 performed the best in terms of accuracy and robustness. It was even able to detect traffic signals under different lighting conditions and in real time. Once detected a traffic signal, it was even able to detect the colour of the light of traffic light. Thus, in terms of performance, it can be sufficiently concluded that the YOLOv3 algorithm would be the best to be implemented, if need be, on an autonomous vehicle. Also, the current issues faced in implementing this algorithm can be further reduced by implementing it on sophisticated GPUs with current embedded computing boards such as NVIDIA Jetson.
-
 
